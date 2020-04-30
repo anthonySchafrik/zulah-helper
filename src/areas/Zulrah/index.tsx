@@ -9,11 +9,15 @@ class Zulrah extends Component {
   };
 
   render = () => {
+    const { currentPhase, currentRotation } = this.state;
     return (
       <div>
         <h3>This is the Zulrah container </h3>
-        <RotationComponent />
-        <PhaseContainer />
+        <RotationComponent currentRotation={currentRotation} />
+        <PhaseContainer
+          currentPhase={currentPhase}
+          currentRotation={currentRotation}
+        />
       </div>
     );
   };

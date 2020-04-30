@@ -1,7 +1,12 @@
 import React from 'react';
 
-const PhaseContainer = () => {
-  return <div>this is the PhaseContainer component</div>;
+interface Props {
+  currentPhase: number;
+  currentRotation: number;
+}
+
+const PhaseContainer = ({ currentPhase, currentRotation }: Props) => {
+  return <div>Current Phase {currentPhase}</div>;
 };
 
 export default PhaseContainer;
