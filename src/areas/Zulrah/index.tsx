@@ -9,8 +9,20 @@ class Zulrah extends Component {
     currentRotation: 1,
   };
 
+  handlePhaseChange = (key: string, mathType: string) => {
+    let { currentPhase } = this.state;
+
+    if (mathType === 'add') {
+      this.setState({ [key]: currentPhase += 1 });
+      return;
+    }
+
+    this.setState({ [key]: currentPhase -= 1 });
+  };
+
   render = () => {
     const { currentPhase, currentRotation } = this.state;
+    console.log(currentPhase);
     return (
       <div
         style={{
@@ -23,6 +35,7 @@ class Zulrah extends Component {
         <PhaseContainer
           currentPhase={currentPhase}
           currentRotation={currentRotation}
+          handlePhaseChange={this.handlePhaseChange}
         />
       </div>
     );

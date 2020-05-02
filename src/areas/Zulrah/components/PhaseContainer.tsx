@@ -5,10 +5,17 @@ import { phases } from '../utils';
 interface Props {
   currentPhase: number;
   currentRotation: number;
+  handlePhaseChange: (key: string, mathType: string) => void;
 }
 
-const PhaseContainer = ({ currentPhase, currentRotation }: Props) => {
+const PhaseContainer = ({
+  currentPhase,
+  currentRotation,
+  handlePhaseChange,
+}: Props) => {
   const rotationKey = `r${currentRotation}`;
+
+  const totalPhases = Object.keys(phases[rotationKey]).length;
 
   return (
     <div>
@@ -17,8 +24,18 @@ const PhaseContainer = ({ currentPhase, currentRotation }: Props) => {
         <img src={phases[rotationKey][currentPhase]} alt="Current Phase" />
       </div>
       <div>
-        <button>{'<='}</button>
-        <button>{'=>'}</button>
+        <button
+          disabled={currentPhase === 1 ? true : false}
+          onClick={() => handlePhaseChange('currentPhase', 'mines')}
+        >
+          {'<='}
+        </button>
+        <button
+          disabled={totalPhases === currentPhase ? true : false}
+          onClick={() => handlePhaseChange('currentPhase', 'add')}
+        >
+          {'=>'}
+        </button>
       </div>
     </div>
   );
