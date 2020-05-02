@@ -20,9 +20,18 @@ class Zulrah extends Component {
     this.setState({ [key]: currentPhase -= 1 });
   };
 
+  handleRotationChange = (rotation: number, reset?: boolean) => {
+    if (reset) {
+      this.setState({ currentRotation: 1, currentPhase: 1 });
+      return;
+    }
+
+    this.setState({ currentRotation: rotation });
+  };
+
   render = () => {
     const { currentPhase, currentRotation } = this.state;
-    console.log(currentPhase);
+
     return (
       <div
         style={{
@@ -36,6 +45,7 @@ class Zulrah extends Component {
           currentPhase={currentPhase}
           currentRotation={currentRotation}
           handlePhaseChange={this.handlePhaseChange}
+          handleRotationChange={this.handleRotationChange}
         />
       </div>
     );

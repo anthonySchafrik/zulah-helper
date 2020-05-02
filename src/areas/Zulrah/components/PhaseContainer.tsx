@@ -6,12 +6,14 @@ interface Props {
   currentPhase: number;
   currentRotation: number;
   handlePhaseChange: (key: string, mathType: string) => void;
+  handleRotationChange: (rotation: number, reset?: boolean) => void;
 }
 
 const PhaseContainer = ({
   currentPhase,
   currentRotation,
   handlePhaseChange,
+  handleRotationChange,
 }: Props) => {
   const rotationKey = `r${currentRotation}`;
 
@@ -20,8 +22,8 @@ const PhaseContainer = ({
   const handlePhaseUpdate = (key: string, mathType: string) => () =>
     handlePhaseChange(key, mathType);
 
-  const handleUpdateRotation = (rotation: number) => () =>
-    console.log(rotation);
+  const handleUpdateRotation = (rotation: number, reset?: boolean) => () =>
+    handleRotationChange(rotation, reset);
 
   return (
     <div
@@ -48,7 +50,7 @@ const PhaseContainer = ({
         {currentPhase !== 1 && currentPhase !== 2 && (
           <img
             onClick={handleUpdateRotation(2)}
-            src={phases[rotationKey][currentPhase]}
+            src={phases[`r${2}`][currentPhase]}
             alt="Current Phase"
           />
         )}
@@ -56,7 +58,7 @@ const PhaseContainer = ({
         {currentPhase !== 1 && (
           <img
             onClick={handleUpdateRotation(3)}
-            src={phases[rotationKey][currentPhase]}
+            src={phases[`r${3}`][currentPhase]}
             alt="Current Phase"
           />
         )}
@@ -64,7 +66,7 @@ const PhaseContainer = ({
         {currentPhase !== 1 && (
           <img
             onClick={handleUpdateRotation(4)}
-            src={phases[rotationKey][currentPhase]}
+            src={phases[`r${4}`][currentPhase]}
             alt="Current Phase"
           />
         )}
@@ -82,6 +84,9 @@ const PhaseContainer = ({
         >
           {'=>'}
         </button>
+        {totalPhases === currentPhase && (
+          <button onClick={handleUpdateRotation(1, true)}>Reset</button>
+        )}
       </div>
     </div>
   );
