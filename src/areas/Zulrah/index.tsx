@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import PhaseContainer from './components/PhaseContainer';
 import RotationComponent from './components/RotationComponent';
 
@@ -15,7 +16,7 @@ class Zulrah extends Component {
         style={{
           display: 'grid',
           gridTemplateRows: '50% 50%',
-          gridRowGap: 100,
+          gridRowGap: 75,
         }}
       >
         <RotationComponent currentRotation={currentRotation} />
