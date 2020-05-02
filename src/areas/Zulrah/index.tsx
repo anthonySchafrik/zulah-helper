@@ -11,8 +11,13 @@ class Zulrah extends Component {
   render = () => {
     const { currentPhase, currentRotation } = this.state;
     return (
-      <div>
-        <h3>This is the Zulrah container </h3>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateRows: '50% 50%',
+          gridRowGap: 100,
+        }}
+      >
         <RotationComponent currentRotation={currentRotation} />
         <PhaseContainer
           currentPhase={currentPhase}

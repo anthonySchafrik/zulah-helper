@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import r1 from '../../../assets/rotations/r1/r1f.png';
 import r2 from '../../../assets/rotations/r2/r2f.png';
@@ -25,11 +25,28 @@ interface Props {
 }
 
 const RotationComponent = ({ currentRotation }: Props) => {
-  console.log(r1);
+  const [fullRotationToggle, setFullRotationToggle] = useState(false);
+
   return (
-    <div>
-      <h2>Current Rotation is {currentRotation}</h2>
-      <img src={rotations[currentRotation]} alt="current rotation" />
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <h2
+        style={{ cursor: 'pointer' }}
+        onClick={() => setFullRotationToggle(!fullRotationToggle)}
+      >
+        Current Rotation is {currentRotation}
+      </h2>
+      <div
+        onClick={() => setFullRotationToggle(!fullRotationToggle)}
+        style={{ display: fullRotationToggle ? 'none' : 'block' }}
+      >
+        <img src={rotations[currentRotation]} alt="current rotation" />
+      </div>
     </div>
   );
 };
