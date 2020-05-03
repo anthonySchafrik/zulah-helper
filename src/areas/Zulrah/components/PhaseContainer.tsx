@@ -5,9 +5,9 @@ import { phases } from '../utils';
 interface Props {
   currentPhase: number;
   currentRotation: number;
+  shouldRest: boolean;
   handlePhaseChange: (key: string, mathType: string) => void;
   handleRotationChange: (rotation: number, reset?: boolean) => void;
-  shouldRest: boolean;
 }
 
 interface State {
@@ -82,8 +82,7 @@ const PhaseContainer = ({
   const handlePhaseUpdate = (key: string, mathType: string) => () => {
     if (mathType === 'mines' && currentPhase - 1 === 1) {
       dispatch({
-        type: UPDATE_ACTION,
-        payload: { img2: false, img3: false, img4: false },
+        type: RESET,
       });
     }
 
@@ -103,16 +102,20 @@ const PhaseContainer = ({
     if (currentPhase === 2) {
       if (imgNumber === 1) {
         dispatch({
-          type: UPDATE_ACTION,
-          payload: { img2: false, img3: false, img4: false },
+          type: RESET,
+        });
+      }
+
+      if (imgNumber === 3 || imgNumber === 4) {
+        dispatch({
+          type: RESET,
         });
       }
     }
 
     if (currentPhase === 4) {
       dispatch({
-        type: UPDATE_ACTION,
-        payload: { img2: false, img3: false, img4: false },
+        type: RESET,
       });
     }
   };
@@ -163,7 +166,14 @@ const PhaseContainer = ({
           />
         )}
       </div>
-      <div>
+      <div
+        style={{
+          marginTop: 15,
+          width: 100,
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         <button
           disabled={currentPhase === 1 ? true : false}
           onClick={handlePhaseUpdate('currentPhase', 'mines')}

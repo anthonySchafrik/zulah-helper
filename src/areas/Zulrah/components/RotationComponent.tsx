@@ -9,6 +9,8 @@ interface Props {
 const RotationComponent = ({ currentRotation }: Props) => {
   const [fullRotationToggle, setFullRotationToggle] = useState(false);
 
+  const handleToggle = () => setFullRotationToggle(!fullRotationToggle);
+
   return (
     <div
       style={{
@@ -17,14 +19,11 @@ const RotationComponent = ({ currentRotation }: Props) => {
         flexDirection: 'column',
       }}
     >
-      <h2
-        style={{ cursor: 'pointer' }}
-        onClick={() => setFullRotationToggle(!fullRotationToggle)}
-      >
+      <h2 style={{ cursor: 'pointer' }} onClick={handleToggle}>
         Current Rotation is {currentRotation}
       </h2>
       <div
-        onClick={() => setFullRotationToggle(!fullRotationToggle)}
+        onClick={handleToggle}
         style={{ display: fullRotationToggle ? 'none' : 'block' }}
       >
         <img src={rotations[currentRotation]} alt="current rotation" />
