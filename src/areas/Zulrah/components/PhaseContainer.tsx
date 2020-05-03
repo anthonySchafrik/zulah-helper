@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
 import { phases } from '../utils';
 
@@ -9,18 +9,66 @@ interface Props {
   handleRotationChange: (rotation: number, reset?: boolean) => void;
 }
 
+interface State {
+  [key: string]: any;
+  img2?: boolean;
+  img3?: boolean;
+  img4?: boolean;
+}
+
+const initialState: State = {
+  img2: false,
+  img3: false,
+  img4: false,
+};
+
+interface Action {
+  type: string;
+  payload: State;
+}
+
+const UPDATE_ACTION = 'UPDATE_ACTION';
+
+const reducer = (state: State, action: Action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case UPDATE_ACTION:
+      return {
+        ...state,
+        ...payload,
+      };
+    default:
+      return state;
+  }
+};
+
 const PhaseContainer = ({
   currentPhase,
   currentRotation,
   handlePhaseChange,
   handleRotationChange,
 }: Props) => {
-  const rotationKey = `r${currentRotation}`;
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { img2, img3, img4 } = state;
 
+  const rotationKey = `r${currentRotation}`;
   const totalPhases = Object.keys(phases[rotationKey]).length;
 
-  const handlePhaseUpdate = (key: string, mathType: string) => () =>
+  const handlePhaseUpdate = (key: string, mathType: string) => () => {
+    if (mathType === 'mines' && currentPhase - 1 === 1) {
+      dispatch({
+        type: UPDATE_ACTION,
+        payload: { img2: false, img3: false, img4: false },
+      });
+    }
+
+    if (currentPhase === 1) {
+      dispatch({ type: UPDATE_ACTION, payload: { img3: true, img4: true } });
+    }
+
     handlePhaseChange(key, mathType);
+  };
 
   const handleUpdateRotation = (rotation: number, reset?: boolean) => () =>
     handleRotationChange(rotation, reset);
@@ -47,7 +95,7 @@ const PhaseContainer = ({
           alt="Current Phase"
         />
 
-        {currentPhase !== 1 && currentPhase !== 2 && (
+        {img2 && (
           <img
             onClick={handleUpdateRotation(2)}
             src={phases[`r${2}`][currentPhase]}
@@ -55,7 +103,7 @@ const PhaseContainer = ({
           />
         )}
 
-        {currentPhase !== 1 && (
+        {img3 && (
           <img
             onClick={handleUpdateRotation(3)}
             src={phases[`r${3}`][currentPhase]}
@@ -63,7 +111,7 @@ const PhaseContainer = ({
           />
         )}
 
-        {currentPhase !== 1 && (
+        {img4 && (
           <img
             onClick={handleUpdateRotation(4)}
             src={phases[`r${4}`][currentPhase]}
