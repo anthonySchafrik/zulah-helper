@@ -13,6 +13,7 @@ import r1six from '../../assets/rotations/r1/six.png';
 import r1seven from '../../assets/rotations/r1/seven.png';
 import r1eight from '../../assets/rotations/r1/eight.png';
 import r1nine from '../../assets/rotations/r1/nine.png';
+import r1ten from '../../assets/rotations/r1/ten.png';
 
 // rotation 2 phases
 import r2one from '../../assets/rotations/r2/one.png';
@@ -24,6 +25,7 @@ import r2six from '../../assets/rotations/r2/six.png';
 import r2seven from '../../assets/rotations/r2/seven.png';
 import r2eight from '../../assets/rotations/r2/eight.png';
 import r2nine from '../../assets/rotations/r2/nine.png';
+import r2ten from '../../assets/rotations/r2/ten.png';
 
 // rotation 3 phases
 import r3one from '../../assets/rotations/r3/one.png';
@@ -36,6 +38,7 @@ import r3seven from '../../assets/rotations/r3/seven.png';
 import r3eight from '../../assets/rotations/r3/eight.png';
 import r3nine from '../../assets/rotations/r3/nine.png';
 import r3ten from '../../assets/rotations/r3/ten.png';
+import r3eleven from '../../assets/rotations/r3/eleven.png';
 
 // rotation 4 phases
 import r4one from '../../assets/rotations/r4/one.png';
@@ -49,6 +52,7 @@ import r4eight from '../../assets/rotations/r4/eight.png';
 import r4nine from '../../assets/rotations/r4/nine.png';
 import r4ten from '../../assets/rotations/r4/ten.png';
 import r4eleven from '../../assets/rotations/r4/eleven.png';
+import r4twelve from '../../assets/rotations/r4/twelve.png';
 
 interface RotationObject {
   [key: string]: string;
@@ -65,7 +69,7 @@ export const rotations: RotationObject = {
   4: r4,
 };
 
-interface NinePhases {
+interface TenPhases {
   1: string;
   2: string;
   3: string;
@@ -75,14 +79,15 @@ interface NinePhases {
   7: string;
   8: string;
   9: string;
-}
-
-interface TenPhases extends NinePhases {
   10: string;
 }
 
 interface ElevenPhases extends TenPhases {
   11: string;
+}
+
+interface TwelvePhases extends TenPhases {
+  12: string;
 }
 
 interface phasesObject {
@@ -104,6 +109,7 @@ export const phases: phasesObject = {
     7: r1seven,
     8: r1eight,
     9: r1nine,
+    10: r1ten,
   },
   r2: {
     1: r2one,
@@ -115,6 +121,7 @@ export const phases: phasesObject = {
     7: r2seven,
     8: r2eight,
     9: r2nine,
+    10: r2ten,
   },
   r3: {
     1: r3one,
@@ -127,6 +134,7 @@ export const phases: phasesObject = {
     8: r3eight,
     9: r3nine,
     10: r3ten,
+    11: r3eleven,
   },
   r4: {
     1: r4one,
@@ -140,5 +148,6 @@ export const phases: phasesObject = {
     9: r4nine,
     10: r4ten,
     11: r4eleven,
+    12: r4twelve,
   },
 };

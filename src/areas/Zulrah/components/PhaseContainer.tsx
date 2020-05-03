@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 import { phases } from '../utils';
 
@@ -7,6 +7,7 @@ interface Props {
   currentRotation: number;
   handlePhaseChange: (key: string, mathType: string) => void;
   handleRotationChange: (rotation: number, reset?: boolean) => void;
+  shouldRest: boolean;
 }
 
 interface State {
@@ -24,10 +25,11 @@ const initialState: State = {
 
 interface Action {
   type: string;
-  payload: State;
+  payload?: State;
 }
 
 const UPDATE_ACTION = 'UPDATE_ACTION';
+const RESET = 'RESET';
 
 const reducer = (state: State, action: Action) => {
   const { type, payload } = action;
@@ -38,6 +40,10 @@ const reducer = (state: State, action: Action) => {
         ...state,
         ...payload,
       };
+
+    case RESET:
+      return initialState;
+
     default:
       return state;
   }
@@ -48,9 +54,27 @@ const PhaseContainer = ({
   currentRotation,
   handlePhaseChange,
   handleRotationChange,
+  shouldRest,
 }: Props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { img2, img3, img4 } = state;
+
+  useEffect(() => {
+    if (currentRotation === 1 && currentPhase === 4) {
+      dispatch({
+        type: UPDATE_ACTION,
+        payload: { img2: true, img3: false, img4: false },
+      });
+    }
+  }, [currentPhase, currentRotation]);
+
+  useEffect(() => {
+    if (shouldRest) {
+      dispatch({
+        type: RESET,
+      });
+    }
+  }, [shouldRest]);
 
   const rotationKey = `r${currentRotation}`;
   const totalPhases = Object.keys(phases[rotationKey]).length;
@@ -70,8 +94,28 @@ const PhaseContainer = ({
     handlePhaseChange(key, mathType);
   };
 
-  const handleUpdateRotation = (rotation: number, reset?: boolean) => () =>
+  const handleUpdateRotation = (rotation: number, reset?: boolean) => () => {
+    handlePhaseFilter(rotation);
     handleRotationChange(rotation, reset);
+  };
+
+  const handlePhaseFilter = (imgNumber: number) => {
+    if (currentPhase === 2) {
+      if (imgNumber === 1) {
+        dispatch({
+          type: UPDATE_ACTION,
+          payload: { img2: false, img3: false, img4: false },
+        });
+      }
+    }
+
+    if (currentPhase === 4) {
+      dispatch({
+        type: UPDATE_ACTION,
+        payload: { img2: false, img3: false, img4: false },
+      });
+    }
+  };
 
   return (
     <div
