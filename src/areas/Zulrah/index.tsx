@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import PhaseContainer from './components/PhaseContainer';
 import RotationComponent from './components/RotationComponent';
+import CombatViewer from './components/CombatViewer';
 
 class Zulrah extends Component {
   state = {
@@ -37,11 +38,14 @@ class Zulrah extends Component {
       <div
         style={{
           display: 'grid',
-          gridTemplateRows: '50% 50%',
-          gridRowGap: 75,
+          gridTemplateRows: '50% 30% 50%',
         }}
       >
         <RotationComponent currentRotation={currentRotation} />
+        <CombatViewer
+          currentPhase={currentPhase}
+          currentRotation={currentRotation}
+        />
         <PhaseContainer
           currentPhase={currentPhase}
           currentRotation={currentRotation}

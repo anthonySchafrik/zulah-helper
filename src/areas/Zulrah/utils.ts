@@ -176,7 +176,70 @@ const blue: ZulrahAttach = {
   gear: rangeAttackIcon,
 };
 
-export const combat = {
+interface Rotation1 {
+  1: ZulrahAttach;
+  2: ZulrahAttach;
+  3: ZulrahAttach;
+  4: ZulrahAttach;
+  5: ZulrahAttach;
+  6: ZulrahAttach;
+  7: ZulrahAttach;
+  8: ZulrahAttach;
+  9: ZulrahAttach;
+  10: ZulrahAttach;
+}
+
+interface Rotation2 {
+  1: ZulrahAttach;
+  2: ZulrahAttach;
+  3: ZulrahAttach;
+  4: ZulrahAttach;
+  5: ZulrahAttach;
+  6: ZulrahAttach;
+  7: ZulrahAttach;
+  8: ZulrahAttach;
+  9: ZulrahAttach;
+  10: ZulrahAttach;
+}
+
+interface Rotation3 {
+  1: ZulrahAttach;
+  2: ZulrahAttach;
+  3: ZulrahAttach;
+  4: ZulrahAttach;
+  5: ZulrahAttach;
+  6: ZulrahAttach;
+  7: ZulrahAttach;
+  8: ZulrahAttach;
+  9: ZulrahAttach;
+  10: ZulrahAttach;
+  11: ZulrahAttach;
+}
+
+interface Rotation4 {
+  1: ZulrahAttach;
+  2: ZulrahAttach;
+  3: ZulrahAttach;
+  4: ZulrahAttach;
+  5: ZulrahAttach;
+  6: ZulrahAttach;
+  7: ZulrahAttach;
+  8: ZulrahAttach;
+  9: ZulrahAttach;
+  10: ZulrahAttach;
+  11: ZulrahAttach;
+  12: ZulrahAttach;
+}
+
+interface CombatPhaseObject {
+  [key: string]: any;
+  r1: Rotation1;
+  r2: Rotation2;
+  r3: Rotation3;
+  r4: Rotation4;
+}
+
+export const combat: CombatPhaseObject = {
   r1: {
     1: green,
     2: red,
