@@ -54,7 +54,10 @@ import r4ten from '../../assets/rotations/r4/ten.png';
 import r4eleven from '../../assets/rotations/r4/eleven.png';
 import r4twelve from '../../assets/rotations/r4/twelve.png';
 
-import mageIcon from '../../assets/icons/Protect_from_Magic.png';
+import magePrayIcon from '../../assets/icons/Protect_from_Magic.png';
+import rangePrayIcon from '../../assets/icons/Protect_from_Missiles.png';
+import mageAttackIcon from '../../assets/icons/Magic_icon.png';
+import rangeAttackIcon from '../../assets/icons/Ranged_icon.png';
 
 interface RotationObject {
   [key: string]: string;
@@ -154,191 +157,75 @@ export const phases: phasesObject = {
   },
 };
 
-/* 
-  green pray range, gear  mage
-  red pray ?, gear  mage
-  blue pray with mage, gear range
-*/
+interface ZulrahAttach {
+  pray?: string;
+  gear: string;
+}
+
+const green: ZulrahAttach = {
+  pray: rangePrayIcon,
+  gear: mageAttackIcon,
+};
+
+const red: ZulrahAttach = {
+  gear: mageAttackIcon,
+};
+
+const blue: ZulrahAttach = {
+  pray: magePrayIcon,
+  gear: rangeAttackIcon,
+};
 
 export const combat = {
   r1: {
-    p1: {
-      gear: '',
-      pray: '',
-    },
-    p2: {
-      gear: '',
-      pray: '',
-    },
-    p3: {
-      gear: '',
-      pray: '',
-    },
-    p4: {
-      gear: '',
-      pray: '',
-    },
-    p5: {
-      gear: '',
-      pray: '',
-    },
-    p6: {
-      gear: '',
-      pray: '',
-    },
-    p7: {
-      gear: '',
-      pray: '',
-    },
-    p8: {
-      gear: '',
-      pray: '',
-    },
-    p9: {
-      gear: '',
-      pray: '',
-    },
-    p10: {
-      gear: '',
-      pray: '',
-    },
+    1: green,
+    2: red,
+    3: blue,
+    4: green,
+    5: red,
+    6: blue,
+    7: green,
+    8: blue,
+    9: green,
+    10: red,
   },
   r2: {
-    p1: {
-      gear: '',
-      pray: '',
-    },
-    p2: {
-      gear: '',
-      pray: '',
-    },
-    p3: {
-      gear: '',
-      pray: '',
-    },
-    p4: {
-      gear: '',
-      pray: '',
-    },
-    p5: {
-      gear: '',
-      pray: '',
-    },
-    p6: {
-      gear: '',
-      pray: '',
-    },
-    p7: {
-      gear: '',
-      pray: '',
-    },
-    p8: {
-      gear: '',
-      pray: '',
-    },
-    p9: {
-      gear: '',
-      pray: '',
-    },
-    p10: {
-      gear: '',
-      pray: '',
-    },
+    1: green,
+    2: red,
+    3: blue,
+    4: green,
+    5: blue,
+    6: red,
+    7: green,
+    8: blue,
+    9: green,
+    10: red,
   },
   r3: {
-    p1: {
-      gear: '',
-      pray: '',
-    },
-    p2: {
-      gear: '',
-      pray: '',
-    },
-    p3: {
-      gear: '',
-      pray: '',
-    },
-    p4: {
-      gear: '',
-      pray: '',
-    },
-    p5: {
-      gear: '',
-      pray: '',
-    },
-    p6: {
-      gear: '',
-      pray: '',
-    },
-    p7: {
-      gear: '',
-      pray: '',
-    },
-    p8: {
-      gear: '',
-      pray: '',
-    },
-    p9: {
-      gear: '',
-      pray: '',
-    },
-    p10: {
-      gear: '',
-      pray: '',
-    },
-    p11: {
-      gear: '',
-      pray: '',
-    },
+    1: green,
+    2: green,
+    3: red,
+    4: blue,
+    5: green,
+    6: blue,
+    7: green,
+    8: green,
+    9: blue,
+    10: green,
+    11: blue,
   },
   r4: {
-    p1: {
-      gear: '',
-      pray: '',
-    },
-    p2: {
-      gear: '',
-      pray: '',
-    },
-    p3: {
-      gear: '',
-      pray: '',
-    },
-    p4: {
-      gear: '',
-      pray: '',
-    },
-    p5: {
-      gear: '',
-      pray: '',
-    },
-    p6: {
-      gear: '',
-      pray: '',
-    },
-    p7: {
-      gear: '',
-      pray: '',
-    },
-    p8: {
-      gear: '',
-      pray: '',
-    },
-    p9: {
-      gear: '',
-      pray: '',
-    },
-    p10: {
-      gear: '',
-      pray: '',
-    },
-    p11: {
-      gear: '',
-      pray: '',
-    },
-    p12: {
-      gear: '',
-      pray: '',
-    },
+    1: green,
+    2: blue,
+    3: green,
+    4: blue,
+    5: red,
+    6: green,
+    7: green,
+    8: blue,
+    9: green,
+    10: blue,
+    11: green,
+    12: blue,
   },
 };
