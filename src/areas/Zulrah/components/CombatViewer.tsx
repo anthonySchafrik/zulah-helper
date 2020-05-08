@@ -10,7 +10,7 @@ interface Props {
 const CombatViewer = ({ currentPhase, currentRotation }: Props) => {
   const rotationKey = `r${currentRotation}`;
   const totalPhase = Object.keys(combat[rotationKey]).length;
-  const lastPhase = currentPhase === totalPhase - 1 ? true : false;
+  const lastPhase = currentPhase === totalPhase ? true : false;
   const nextPhase = lastPhase ? 1 : currentPhase + 1;
 
   const { gear: currentGear, pray: currentPray } = combat[rotationKey][
